@@ -21,7 +21,7 @@ In the 2023 season of the WRO Future Engineers competition, this repository hous
 + `models` - Changes made on our chassis to fit electric parts and sensors
 + `schemes` - Schematics for the electrical systems.
 + `src` - Contains the primary programs and control software for the project.
-+ `t-photos` - You will discover serious and lighthearted photographs.
++ `t-photos` - You will discover serious and lighthearted photographs of our team.
 + `v-photos` -Explore a comprehensive collection of images capturing our robot from all required angles and perspectives, providing a comprehensive visual overview.
 + `video` - This directory contains a link to a YouTube video where our robot is showcased in action, allowing you to witness its performance firsthand.
 + `others` - other essential photos
