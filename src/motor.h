@@ -9,6 +9,10 @@ class Motor {
     m_pin1 = _pin1;
     m_pin2 = _pin2;
     m_enable = _enable;
+    pinMode(m_pin1, OUTPUT);
+    pinMode(m_pin2, OUTPUT);
+    pinMode(m_enable, OUTPUT);
+
 
   }
   void SetSpeed(int _speed)
