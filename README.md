@@ -99,9 +99,9 @@ We tried to keep our parts list simple and affordable. Although it could've been
 - L293D motor driver: This motor driver provided enough functionality for what we were trying to achieve.
 
 -   HC-SR04 sonar sensors: We're using these sensors to measure distance from both the left and right walls. We mounted it at an angle so it could see changes in walls before the car passed it.  
-- 
+  
 - MT3608: We use this boost converter to boost our battery input from 7.4 volts to 12 volts to power our motor.
-- 
+ 
 - LM2596 buck converters: For powering up all 5v components of our board. Including our microcontroller, servo, motor driver IC, huskylens, and MPU6050.
 
 - MPU6050: was used to know the orientation of the robot in real-time. This data is later used to count laps.
