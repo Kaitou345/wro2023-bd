@@ -27,7 +27,11 @@ public:
   {
     if (!m_huskylens.request()) Serial.println(F("Fail to request data from HUSKYLENS, recheck the connection!"));
     else if(!m_huskylens.isLearned()) Serial.println(F("Nothing learned, press learn button on HUSKYLENS to learn one!"));
-    else if(!m_huskylens.available()) Serial.println(F("No block or arrow appears on the screen!"));
+    else if(!m_huskylens.available()) {
+
+      Serial.println(F("No block or arrow appears on the screen!"));
+      m_isvisible = false;
+    }
     else
     {
         while (m_huskylens.available())
@@ -38,15 +42,16 @@ public:
             m_result = m_huskylens.read();
             m_time = millis();
           }
+          m_isvisible = true;
         }
     }
   }
 
-  bool IsVisible(){return m_huskylens.available();}
-  byte GetId(){return m_result.ID;}
-  int GetWidth(){m_result.width;}
-  int GetX() {return m_result.xCenter;}
-  int GetY() {return m_result.yCenter;}
+  
+  const HUSKYLENS& GetLens()
+  {
+    return m_huskylens;
+  }
 
   void ResultLog()
   {
@@ -60,10 +65,15 @@ public:
         Serial.println("Object unknown!");
     }
   }
+  bool IsVisible()
+  {
+    return m_isvisible;
+  }
 private:
   HUSKYLENS m_huskylens;
   HUSKYLENSResult m_result;
   unsigned long m_time;
   byte m_delay = 200;
+  bool m_isvisible;
 };
 #endif
