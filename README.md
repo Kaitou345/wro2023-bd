@@ -105,10 +105,7 @@ We tried to keep our parts list simple and affordable. Although it could've been
 - LM2596 buck converters: For powering up all 5v components of our board. Including our microcontroller, servo, motor driver IC, huskylens, and MPU6050.
 
 - MPU6050: was used to know the orientation of the robot in real-time. This data is later used to count laps.
-- 3S 12.6V 1500mAh battery is powering this entire system. We're getting a runtime of an average of 3 hours.
-
-![brd1](https://github.com/tausif-sama/Bangladesh_Team-Lazy-go/blob/main/others/brd1.jpg.jpg)
-![brd2](https://github.com/tausif-sama/Bangladesh_Team-Lazy-go/blob/main/others/brd2.jpg)
+- 1100mAh battery
 
 
 ----
