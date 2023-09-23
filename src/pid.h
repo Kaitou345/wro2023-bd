@@ -6,7 +6,7 @@
 
 class PID {
 public:
-  PID(Sonar& l, Sonar& r, Sonar& f): m_l(l), m_r(r), m_f(f)  {}
+  PID(Sonar& l, Sonar& r): m_l(l), m_r(r) {}
   void Initialize(float kp, float ki, float kd, byte clamp)
   {
     m_pid.begin();          
@@ -17,9 +17,17 @@ public:
   int GetOutput() 
   {
     int error = m_l.GetDistance() - m_r.GetDistance();
-    //Serial.println(error);
     return m_pid.compute(error);
   }
+  int GetOutputL(int preferedDistance) {
+    int error = m_l.GetDistance() - preferedDistance;
+    return m_pid.compute(error);
+  }
+  int GetOutputR(int preferedDistance) {
+    int error = m_r.GetDistance() - preferedDistance;
+    return m_pid.compute(error);
+  }
+  
   void SetPoint(int point)
   {
     m_pid.setpoint(point);
@@ -32,7 +40,7 @@ private:
   PIDController m_pid;
   Sonar& m_l;
   Sonar& m_r;
-  Sonar& m_f;
+  
 };
 
 
