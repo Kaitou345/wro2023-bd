@@ -1,71 +1,69 @@
 #include "lens.h"
-#include "rotator.h"
 #include "motor.h"
 #include "sonar.h"
-#include "angle.h"
+#include "rotator.h"
 #include "pid.h"
 
-#define SONARL 7
-#define SONARR 6
-#define SONARF 8
-#define MOTORPIN1 4
-#define MOTORPIN2 5
-#define MOTOREN 3
-#define SERVO 2
-#define SW 9
+#define SERVO 2 
+#define SERVO_NEUTRAL 70
+#define SERVO_CLAMP 25
+#define LEFT 1
+#define RIGHT -1
+
+#define SONARR 8
+#define SONARL 9
+#define SONAR_DISTANCE 300
+#define COMFORTABLE_DISTANCE 30
+
+
+#define MOTOR_PIN1 4
+#define MOTOR_PIN2 5 
+#define MOTOR_EN 3
+
 #define LED 13
-#define LIMIT 30
+#define SWITCH 12
 
-Lens lens;
-Rotator steering;
+Sonar sonarL(SONARL, SONAR_DISTANCE);
+Sonar sonarR(SONARR, SONAR_DISTANCE);
+
 Motor motor;
-Sonar sonarL(SONARL, 300);
-Sonar sonarR(SONARR, 300);
-Sonar sonarF(SONARF, 30);
-Angle angle;
-PID pid(sonarL, sonarR, sonarF);
+Rotator steering;
 
-
+PID pid(sonarL, sonarR);
 
 void setup() {
-
-  Serial.begin(9600);
-  pinMode(SW, INPUT_PULLUP);
+  // put your setup code here, to run once:
+  pinMode(SWITCH, INPUT_PULLUP);
   pinMode(LED, OUTPUT);
-  lens.Initialize();
-  steering.Initialize(SERVO, 70, LIMIT);
-  motor.Initialize(MOTORPIN1, MOTORPIN2, MOTOREN);
   sonarL.Initialize();
   sonarR.Initialize();
-  sonarF.Initialize();
-  pid.Initialize(28, 0.1, 3.5, 35);
-  //angle.Initialize();
+  motor.Initialize(MOTOR_PIN1, MOTOR_PIN2, MOTOR_EN);
+  steering.Initialize(SERVO, SERVO_NEUTRAL, SERVO_CLAMP);
+  pid.Initialize(35, 0.1, 3, SERVO_CLAMP);
+  
 }
 
 void loop() {
   int r = button_read();
-  //delay(3000);
-  if (r == 1) {
-    first_round();
+  Serial.print("SonarL: ");
+  Serial.print(sonarL.GetDistance());
+  Serial.print(" SonarR: ");
+  Serial.println(sonarR.GetDistance());
+
+  //motor.SetSpeed(255);
+  if (r==1 ) {
+    
+    bool isRight = CheckOrientation();
+    if(isRight)
+    {
+      digitalWrite(LED, HIGH);
+    }
+    else
+    {
+      digitalWrite(LED, LOW);
+    }
+    
+   first_round(isRight);
   }
 
-  
-  lens.ResultLog();
-  //steering.SetRotation(0);
-  // motor.SetSpeed(-255);
-  
-  //Serial.println(pid.GetOutput());
-//   angle.MainLoop();
-//   Serial.println(angle.GetAngle());
-// motor.SetSpeed(200);
-// steering.SetRotation(40);
-// delay(1000);
-// Serial.print(sonarL.GetDistance());
-// Serial.print(".  ");
-// Serial.print(sonarR.GetDistance());
-// Serial.print(".  ");
-// Serial.println(sonarF.GetDistance());
-
-
 }
-  
