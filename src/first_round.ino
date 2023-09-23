@@ -1,19 +1,20 @@
-void first_round() {
-  while (1) {
-    lens.MainLoop();
-    //angle.MainLoop();
-    if(lens.IsVisible() && lens.GetWidth()>67 && lens.GetId() == 2){
-      steering.SetRotation(20);
-      motor.SetSpeed(130);
+void first_round(bool isRight) {
+  
+  bool shouldStop = false;
+  while (true) {
+    
+    pid.SetPoint(0);
+    pid.SetLimit(SERVO_CLAMP);
+    int output;
+    if (isRight) {
+      output = pid.GetOutputR(COMFORTABLE_DISTANCE);
+    } else {
+      output = pid.GetOutputL(COMFORTABLE_DISTANCE);
     }
-    else{
-      pid.SetPoint(0);
-    pid.SetLimit(LIMIT);
-    int output = pid.GetOutput();
-   motor.SetSpeed(150 - (abs(output)*2));
-    steering.SetRotation(-output);
-    Serial.println(output);
-    //if(abs(angle.GetAngle())>1070)break;
+    motor.SetSpeed(130 - (abs(output) * 2.6));
+    if (!isRight) {
+      output *= RIGHT;
     }
+    steering.SetRotation(output);
   }
 }
