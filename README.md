@@ -58,17 +58,14 @@ We use object oriented designed pattern that helps us quickly prototype our conc
 After detecting the inner wall. The robot through the track whilst keeping a safe distance from the inner wall. We calculated a standard speed that allows stable laps.
 
 ### **Avoiding wall collisions**
-If the robot gets dangerously close to a wall, we steer it in the other direction.
+If the robot gets dangerously close to a wall, we steer it in the other direction at a 20 degree angle.
 
 
-### Part 3: Detecting if it's the 2nd round 
-We rotate the husky lens with a servo motor when we start the robot to detect obstacles. If the huskylens pick up reading of Red or Green obstacles when navigating the starting section, it goes into the 2nd round logic. And never gets out. If no object is detected the robot follows the 1st robot code. 
-
-### Part 4: 2nd round obstacle avoidance
+### Part 3: 2nd round obstacle avoidance
 
 When the huskylens detect an object, we check which color it is and how far away it is (by height and width). If it is within 20cm the robot goes into manual mode and steers according to the object color until it has passed the object and returned to its neutral position or close to it. If the object is green it steers to the left and if the object is red it steers to the right.
 
-### Part 5 - Detecting the end of 3 laps:
+### Part 4 - Detecting the end of 3 laps:
 
 We detect the orange and blue colors of the corner sections through Husky Lens and count the number of times it comes in contact with the colors. This allows us to count total lap numbers and stop after exactly 3 laps. 
 
@@ -84,7 +81,6 @@ We tried to keep our parts list simple and affordable. Although it could've been
 + SG90 (Servo for Huskylens)
 + MG90s (Servo for steering)
 + L293D Motor Driver
-+ MPU6050
 + mt3608 Boost Converter
 +  lm2596 buck module
 + 2S 1100 mAh LiPo battery  
@@ -92,22 +88,19 @@ We tried to keep our parts list simple and affordable. Although it could've been
 ## Engineering Design 
 + Arduino Uno R3: We use it as our main microcontroller for controlling the robot and getting input from the sensors.
 + Huskylens: We use this module for detecting object color and turning points.
- + Chassis: We customized an RC car chassis which was more affordable and customizable for our needs. Initially, we used a 9-inch-long RC car but later we went with a slim and smaller one which allowed us to negotiate the challenges easily. 
++ Chassis: We customized an RC car chassis which was more affordable and customizable for our needs. Initially, we used a 9-inch-long RC car but later we went with a slim and smaller one which allowed us to negotiate the challenges easily. 
  
 + 12V 800RPM N20: This provided enough speed and torque for our robot. 
++ MG90S: We used this servo motor for steering the robot.
++ L293D motor driver: This motor driver provided enough functionality for what we were trying to achieve.
 
-- MG90S: We used this servo motor for steering the robot.
-
-- L293D motor driver: This motor driver provided enough functionality for what we were trying to achieve.
-
--   HC-SR04 sonar sensors: We're using these sensors to measure distance from both the left and right walls. We mounted it at an angle so it could see changes in walls before the car passed it.  
++ HC-SR04 sonar sensors: We're using these sensors to measure distance from both the left and right walls. We mounted it at an angle so it could see changes in walls before the car passed it.  
   
-- MT3608: We use this boost converter to boost our battery input from 7.4 volts to 12 volts to power our motor.
++ MT3608: We use this boost converter to boost our battery input from 7.4 volts to 12 volts to power our motor.
  
-- LM2596 buck converters: For powering up all 5v components of our board. Including our microcontroller, servo, motor driver IC, huskylens, and MPU6050.
++ LM2596 buck converters: For powering up all 5v components of our board. Including our microcontroller, servo, motor driver IC, and huskylens.
 
-- MPU6050: was used to know the orientation of the robot in real-time. This data is later used to count laps.
-- 1100mAh battery
++ 1100mAh battery
 
 
 ----
@@ -115,10 +108,9 @@ We tried to keep our parts list simple and affordable. Although it could've been
 
 # Mechanical Design
 
-We have modified the chassis of an RC car to meet our requirement to build a light and slim chassis. 
+We have modified the chassis of an RC car to meet our requirement to build a light and slim chassis. We took of the roof, changed the motors, and added the sensors. 
 
 
-## Design 
 
 ![Imgur](https://i.imgur.com/DTjnj6a.png)
 
