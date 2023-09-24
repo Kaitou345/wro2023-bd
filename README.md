@@ -36,20 +36,22 @@ In the 2023 season of the WRO Future Engineers competition, this repository hous
 
 Our robot runs on an Arduino UNO R3 board which handles all the robot's actions and helps it understand its surroundings.
 
-The robot uses Huskylens to see red and green obstacles. This helps it make decisions while moving. To know where it's going and how many laps it has done, the robot has an MPU6050 sensor and two ultrasonic sensors which help the robot stay on the right path.
+The robot uses Huskylens to see red and green obstacles and negotiate game challenges. We also track the blue lines of the corner sections to count total laps. The robot uses ultrasonic sensors to ensure its intended path.
 
 When we turn on the robot with a battery, it gets ready by setting up its parts and talking to the Huskylens and the sensors. It also centers its servo motor and waits for a user command. The user starts the robot by pushing a button.
 
-The robot's code is split into three parts. This makes it work better and easier to control. 
+The robot's code is split into the following parts allowing us to work efficiently and precisely. 
 
 
 ![Imgur](https://i.imgur.com/TmlsZI7.png)
 
 
-### Part 1 - Determining Run Direction with Sonar Sensors for the first round
+### Part 1 - PID Algorithm 
+
 
 We used PID (proportional, integral, derivative) algorithm code which tries to keep the robot in the middle of the track. The rear motor is slowed down while the vehicle is turning.  If any of the ultrasonic sensors from the sides get a value greater than 200cm,  the robot determines the inner wall placed on that side e.g. if the ultrasonic sensor on the left side gets 250 cm, the logic tends to keep the robot at a safe distance which is 30 cm from the inner wall. 
 
+We use object oriented designed pattern that helps us quickly prototype our concepts. We treat all the electronic modules as objects and by extracting away the implementation details and making an easy to use public facing interface so that we can scale the project as well as our team. 
 
 ### Part 2 - Rest of the first round:
 
