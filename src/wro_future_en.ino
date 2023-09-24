@@ -23,6 +23,13 @@
 #define LED 13
 #define SWITCH 12
 
+Lens lens;
+unsigned long timer;
+unsigned long stop_timer;
+bool should_stop = false;
+byte turn_counter = 0;
+
+
 Sonar sonarL(SONARL, SONAR_DISTANCE);
 Sonar sonarR(SONARR, SONAR_DISTANCE);
 
@@ -33,13 +40,17 @@ PID pid(sonarL, sonarR);
 
 void setup() {
   // put your setup code here, to run once:
+  timer = millis();
+
   pinMode(SWITCH, INPUT_PULLUP);
   pinMode(LED, OUTPUT);
+  lens.Initialize();
   sonarL.Initialize();
   sonarR.Initialize();
   motor.Initialize(MOTOR_PIN1, MOTOR_PIN2, MOTOR_EN);
   steering.Initialize(SERVO, SERVO_NEUTRAL, SERVO_CLAMP);
-  pid.Initialize(35, 0.1, 3, SERVO_CLAMP);
+  // pid.Initialize(35, 0.1, 3, SERVO_CLAMP);
+  pid.Initialize(28, 0.1, 3, SERVO_CLAMP-5);
   
 }
 
@@ -65,5 +76,6 @@ void loop() {
     
    first_round(isRight);
   }
+  
 
 }
