@@ -32,7 +32,7 @@ class Rotator {
     }
     else if (angle < 0 && angle < -m_clamp)
     {
-      angle = m_clamp;
+      angle = -m_clamp;
     }
 
     m_rot = m_neutral+angle;
