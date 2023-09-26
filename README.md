@@ -121,4 +121,4 @@ We have angled the ultrasonic sensors at a 30-degree angle so that we can detect
 Here are the YouTube links to our robot negotiating the game challenges:
 
 1. First round: https://youtu.be/ZwHFC70GCvk?si=jDrG2atMgLqJFHXc
-2. Second round: https://youtu.be/_tO85gQGAt0?si=w_3HogFRJlBmsNNz
+2. Second round: https://youtu.be/FqLHGaT0bRM?si=g5K5yulRLw9J2uUH
