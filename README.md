@@ -85,7 +85,8 @@ We tried to keep our parts list simple and affordable. Although it could've been
 +  lm2596 buck module
 + 2S 1100 mAh LiPo battery  
 
-https://imgur.com/a/PZLfPTT
+![Screenshot 2023-09-28 111856](https://github.com/Kaitou345/wro2023-bd/assets/68972628/b7ab6a8a-a76d-4cc4-bce1-6485dff55453)
+
 
 ## Engineering Design 
 + Arduino Uno R3: We use it as our main microcontroller for controlling the robot and getting input from the sensors.
