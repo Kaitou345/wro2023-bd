@@ -85,6 +85,8 @@ We tried to keep our parts list simple and affordable. Although it could've been
 +  lm2596 buck module
 + 2S 1100 mAh LiPo battery  
 
+https://imgur.com/a/PZLfPTT
+
 ## Engineering Design 
 + Arduino Uno R3: We use it as our main microcontroller for controlling the robot and getting input from the sensors.
 + Huskylens: We use this module for detecting object color and turning points.
